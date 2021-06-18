@@ -48,9 +48,8 @@ public class LocationPopupPage extends BasicPage {
 	public void setLocation(String locationName) {
 		this.getKeyword().click();
 		this.getLocationInput();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].value=arguments[1]", this.getLocationInput(), this.getLocationInput());
-		js.executeScript("arguments[0].click()", this.getSubmit());
+		this.js.executeScript("arguments[0].value=arguments[1]", this.getLocationInput(), this.getLocationInput());
+		this.js.executeScript("arguments[0].click()", this.getSubmit());
 	}
 
 	// Method that close dialog
