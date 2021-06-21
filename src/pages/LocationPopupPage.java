@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 
 public class LocationPopupPage extends BasicPage {
 
-	public LocationPopupPage(WebDriver driver) {
-		super(driver);
+	public LocationPopupPage(WebDriver driver, JavascriptExecutor js) {
+		super(driver,js);
 	}
 
 	// get metoda za element koji prikazuje lokaciju u hederu

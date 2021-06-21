@@ -1,13 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class AuthPage extends BasicPage {
 
-	public AuthPage(WebDriver driver) {
-		super(driver);
+	public AuthPage(WebDriver driver, JavascriptExecutor js) {
+		super(driver,js);
 	}
 
 	public WebElement getFilled() {
