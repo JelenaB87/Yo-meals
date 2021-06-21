@@ -12,7 +12,7 @@ public class AuthPage extends BasicPage {
 	}
 
 	public WebElement getFilled() {
-		return driver.findElement(By.xpath("//*[@class='filled']/a"));
+		return driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div/div[2]/div[2]/ul/li/a"));
 	}
 
 	public WebElement getAccount() {
@@ -26,6 +26,7 @@ public class AuthPage extends BasicPage {
 	// Method for logout
 	
 	public void logOut() {
+		this.getFilled().click();
 		this.getLogOut().click();
 	}
 }

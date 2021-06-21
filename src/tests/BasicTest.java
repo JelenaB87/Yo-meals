@@ -2,6 +2,8 @@ package tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -10,6 +12,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -38,7 +41,7 @@ public abstract class BasicTest {
 	protected String emailDemo = "customer@dummyid.com";
 	protected String passwordDemo = "12345678a";
 	Date currentdate = new Date();
-	protected String screenshotfilename = currentdate.toString().replace(" ", "-").replace(":", "-");
+	//protected String screenshotfilename = currentdate.toString().replace(" ", "-").replace(":", "-");
 
 	@BeforeMethod
 	public void setup() {
@@ -62,13 +65,18 @@ public abstract class BasicTest {
 	}
 
 	@AfterMethod
-	public void ifTestFAil() throws IOException {
-		try {
+	public void ifTestFAil(ITestResult result) throws IOException, InterruptedException {
+		
+		if (result.getStatus()==ITestResult.FAILURE) {
+			DateTimeFormatter timeFormat= DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+			LocalDateTime now = LocalDateTime.now();
+			String screenshotfilename = timeFormat.format(now);
+			
 			File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(screenshotFile, new File(".//screenshot//" + screenshotfilename + ".png"));
-		} catch (IOException ioe) {
-			throw new RuntimeException(ioe);
 		}
+		
+		Thread.sleep(1000);
 
 		this.driver.quit();
 	}

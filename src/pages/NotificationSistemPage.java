@@ -17,7 +17,6 @@ public class NotificationSistemPage extends BasicPage {
 		return driver.findElement(By.xpath(
 				"//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')][contains(@style,'display: block')]"));
 	}
-
 	// Method for alert msg
 
 	public String getMsgText() {

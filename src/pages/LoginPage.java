@@ -24,11 +24,11 @@ public class LoginPage extends BasicPage {
 
 	// Method for login
 
-	public void setLocation(String username, String password) {
+	public void logIn(String username, String password) {
 		this.getUserName().clear();
-		this.getUserName().getAttribute(username);
+		this.getUserName().sendKeys(username);
 		this.getPassword().clear();
-		this.getPassword().getAttribute(password);
+		this.getPassword().sendKeys(password);
 		this.getBtn().click();
 	}
 }

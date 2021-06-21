@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProfilePage extends BasicPage {
@@ -70,11 +71,12 @@ public class ProfilePage extends BasicPage {
 	}
 		
 	public WebElement getUploadImage() {
-		return driver.findElement(By.name("ion-camera"));
+		return driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a/i"));
 	}
 	
 	public WebElement getRemoveImage() {
-		return driver.findElement(By.name("ion-android-close"));
+		return driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]/i"));
+
 	}
 	
 	public WebElement getFilePath() {
@@ -84,6 +86,9 @@ public class ProfilePage extends BasicPage {
 	// Method for upload profile image
 	
 	public void imgUpload(String pathImg) {
+		Actions action = new Actions(driver);
+		WebElement we = driver.findElement(By.className("hover-elemnts"));
+		action.moveToElement(we).build().perform();
 		this.js.executeScript("arguments[0].click();", this.getUploadImage());
 		this.getFilePath().sendKeys(pathImg);
 	}
@@ -91,6 +96,9 @@ public class ProfilePage extends BasicPage {
 	// Method for remove profile image
 
 	public void removeImg() {
+		Actions action = new Actions(driver);
+		WebElement we = driver.findElement(By.className("hover-elemnts"));
+		action.moveToElement(we).build().perform();
 		this.js.executeScript("arguments[0].click();", this.getRemoveImage());
 	}
 	
