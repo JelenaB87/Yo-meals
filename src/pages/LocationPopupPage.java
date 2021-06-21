@@ -45,10 +45,13 @@ public class LocationPopupPage extends BasicPage {
 
 	// Method that sets the location
 
-	public void setLocation(String locationName) {
+	public void setLocation(String locationName) throws InterruptedException {
 		this.getKeyword().click();
-		this.getLocationInput();
-		this.js.executeScript("arguments[0].value=arguments[1]", this.getLocationInput(), this.getLocationInput());
+		WebElement locationItem = this.getLocationItem(locationName);
+		String dataValue = locationItem.getAttribute("data-value");
+		WebElement locationInput = this.getLocationInput();
+		this.js.executeScript("arguments[0].value=arguments[1]", locationInput, dataValue);
+		Thread.sleep(2000);
 		this.js.executeScript("arguments[0].click()", this.getSubmit());
 	}
 

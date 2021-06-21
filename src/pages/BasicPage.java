@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class BasicPage {
 	protected WebDriver driver;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	protected JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public BasicPage(WebDriver driver) {
 		this.driver = driver;
