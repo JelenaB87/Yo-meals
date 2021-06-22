@@ -71,11 +71,11 @@ public class ProfilePage extends BasicPage {
 	}
 		
 	public WebElement getUploadImage() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a/i"));
+		return this.driver.findElement(By.xpath("//*[@title=\"Uplaod\"]"));
 	}
 	
 	public WebElement getRemoveImage() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]/i"));
+		return driver.findElement(By.className("remove"));
 
 	}
 	

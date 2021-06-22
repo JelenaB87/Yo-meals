@@ -14,7 +14,7 @@ public class NotificationSistemPage extends BasicPage {
 	}
 
 	public WebElement getMsg() {
-		return driver.findElement(By.xpath(
+		return this.driver.findElement(By.xpath(
 				"//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')][contains(@style,'display: block')]"));
 	}
 	// Method for alert msg
@@ -25,6 +25,7 @@ public class NotificationSistemPage extends BasicPage {
 	
 	public void waitMsgDisapear() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[contains(@class, 'system_message')]"),"style", "display: none;"));
+		wait.until(ExpectedConditions.attributeContains(By.xpath(" //*[contains(@class, 'system_message')]"),
+				"style", "display: none;"));
 	}
 }

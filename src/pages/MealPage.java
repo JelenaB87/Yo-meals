@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -21,7 +22,7 @@ public class MealPage extends BasicPage {
 		return driver.findElement(By.className("sort-toggle is-active"));
 	}
 	public WebElement getFavorite() {
-		return driver.findElement(By.className("favourite itemfav  link "));
+		return driver.findElement(By.className("favourite"));
 	}
 	public WebElement getProductQty() {
 		return driver.findElement(By.name("product_qty"));
@@ -31,13 +32,16 @@ public class MealPage extends BasicPage {
 	}
 	
 	public WebElement getAddToCart() {
-		return driver.findElement(By.linkText("Add To Cart"));
+		return driver.findElement(By.className("js-proceedtoAddInCart"));
 	}
 	
 	// Method for add food
 	
-	public void addToCart(String quantity) {
-		this.getProductQty().sendKeys(quantity);
+	public void addToCart(int quantity) {
+		String qty = Integer.toString(quantity);
+		this.getProductQty().click();
+		this.getProductQty().sendKeys(Keys.BACK_SPACE);
+		this.getProductQty().sendKeys(qty);
 		this.getAddToCart().click();
 	}
 
