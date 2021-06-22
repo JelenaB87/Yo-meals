@@ -25,9 +25,8 @@ public class MealItemTest extends BasicTest {
 	public String msgCartNoVisible = "The Meal Added To Cart message is not visible";
 	public String removedMsg = "All meals removed from Cart successfully";
 	public String removedMsgNoVisible = "The All meals removed from Cart successfully message is not visible.";
-	
 
-	@Test
+	@Test (priority= 0)
 	public void addToCartTest() throws InterruptedException {
 		this.driver.get(mealLobster);
 		this.locationPopupPage.closeDialog();
@@ -35,9 +34,9 @@ public class MealItemTest extends BasicTest {
 		this.mealPage.addToCart(2);
 		Assert.assertTrue(notificationSistemPage.getMsgText().contains(locationMsg));
 		this.notificationSistemPage.waitMsgDisapear();
-		
-		//Set location and add meal
-		
+
+		// Set location and add meal
+
 		this.locationPopupPage.dialogueOpen();
 		Thread.sleep(2000);
 		this.locationPopupPage.setLocation(locationName);
@@ -46,32 +45,32 @@ public class MealItemTest extends BasicTest {
 		this.mealPage.addToCart(2);
 		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(addCartMsg));
 	}
-	
-	@Test
+
+	@Test (priority= 1)
 	public void addToFavorite() throws InterruptedException {
-		
+
 		this.driver.get(mealLobster);
 		this.locationPopupPage.closeDialog();
 		Thread.sleep(2000);
 		this.mealPage.addFavorite();
 		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(addFavoriteMsg));
-		
-		// LogIn 
-		
+
+		// LogIn
+
 		this.driver.get(logInPg);
 		Thread.sleep(2000);
 		this.logInPage.logIn(emailDemo, passwordDemo);
-		
+
 		// Add to favorite
-		
+
 		this.driver.get(mealLobster);
 		Thread.sleep(2000);
 		this.mealPage.addFavorite();
 		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(favoriteMealMsg));
 
 	}
-	
-	@Test
+
+	@Test(priority= 2)
 	public void clearCart() throws InterruptedException, IOException {
 
 		this.driver.get(mealsPg);
@@ -88,7 +87,7 @@ public class MealItemTest extends BasicTest {
 		SoftAssert sa = new SoftAssert();
 
 		// Add to cart
-		
+
 		for (int i = 1; i <= 5; i++) {
 			String mealUrl = sheet.getRow(i).getCell(0).getStringCellValue();
 			int quantity = (int) sheet.getRow(i).getCell(1).getNumericCellValue();
@@ -97,12 +96,11 @@ public class MealItemTest extends BasicTest {
 			Thread.sleep(2000);
 			this.mealPage.addToCart(quantity);
 
+			sa.assertTrue(notificationSistemPage.getMsgText().contains(addCartMsg), msgCartNoVisible);
 
-			sa.assertTrue(notificationSistemPage.getMsgText().contains(addCartMsg),msgCartNoVisible);
-			
 			Thread.sleep(2000);
 			cartSummaryPage.clearAll();
-			Assert.assertTrue(notificationSistemPage.getMsgText().contains(removedMsg),removedMsgNoVisible);
+			Assert.assertTrue(notificationSistemPage.getMsgText().contains(removedMsg), removedMsgNoVisible);
 		}
 
 	}

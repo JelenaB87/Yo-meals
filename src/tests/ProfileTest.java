@@ -11,7 +11,7 @@ public class ProfileTest extends BasicTest {
 	public String memberPage = baseUrl + "/member/profile";
 	String imgPath = new File("C:/Users/Lucifer/Desktop/Projekti/Yo-meals/img/cuteBunny.png").getAbsolutePath();
 
-	@Test
+	@Test (priority= 1)
 	public void editProfileTest() throws InterruptedException {
 		this.driver.get(loginForm);
 		Thread.sleep(500);
@@ -35,7 +35,7 @@ public class ProfileTest extends BasicTest {
 		this.authPage.logOut();
 	}
 
-	@Test
+	@Test (priority= 2)
 	public void changeProfileTest() throws InterruptedException {
 		this.driver.get(loginForm);
 		Thread.sleep(500);
@@ -49,22 +49,21 @@ public class ProfileTest extends BasicTest {
 
 		this.driver.get(memberPage);
 		Thread.sleep(500);
-		
-		
+
 		profilePage.imgUpload(imgPath);
-		
+
 		Thread.sleep(3000);
 
 		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Profile Image Uploaded Successfully"));
 
 		notificationSistemPage.waitMsgDisapear();
 		profilePage.removeImg();
-		
+
 		Thread.sleep(1000);
 
 		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Profile Image Deleted Successfully"));
 		notificationSistemPage.waitMsgDisapear();
-		
+
 		this.authPage.logOut();
 	}
 }

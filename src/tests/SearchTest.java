@@ -15,7 +15,7 @@ public class SearchTest extends BasicTest {
 	public String locationName = "City Center - Albany";
 	public String errorMsgData = "Number of results dont match with Data(1).xslx file";
 
-	@Test
+	@Test (priority=1)
 	public void searchResults() throws InterruptedException, IOException {
 		this.driver.get(mealsPg);
 		
