@@ -13,7 +13,7 @@ public class SearchTest extends BasicTest {
 
 	public String mealsPg = baseUrl + "/meals";
 	public String locationName = "City Center - Albany";
-	public String errorMsgData = "Number of results dont match with Data(1).xslx file";
+	public String errorMsgData = "[ERROR] Number of results dont match with Data(1).xslx file";
 
 	@Test (priority=1)
 	public void searchResults() throws InterruptedException, IOException {

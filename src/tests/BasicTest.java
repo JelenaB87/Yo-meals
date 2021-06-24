@@ -49,7 +49,7 @@ public abstract class BasicTest {
 		this.driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 

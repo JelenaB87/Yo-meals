@@ -10,6 +10,11 @@ public class ProfileTest extends BasicTest {
 	public String loginForm = baseUrl + "/guest-user/login-form";
 	public String memberPage = baseUrl + "/member/profile";
 	String imgPath = new File("C:/Users/Lucifer/Desktop/Projekti/Yo-meals/img/cuteBunny.png").getAbsolutePath();
+	String logInSuccessfull = "Login Successfull";
+	String logOutSuccessfull = "Logout Successfull";
+	String setupSuccessfull = "Setup Successful";
+	String profileImageUpload = "Profile Image Uploaded Successfully";
+	String profileImageDelete = "Profile Image Deleted Successfully";
 
 	@Test (priority= 1)
 	public void editProfileTest() throws InterruptedException {
@@ -19,20 +24,22 @@ public class ProfileTest extends BasicTest {
 
 		this.logInPage.logIn(this.emailDemo, this.passwordDemo);
 
-		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Login Successfull"));
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(logInSuccessfull));
 
 		Thread.sleep(500);
 
 		this.driver.get(memberPage);
 		Thread.sleep(500);
 
-		profilePage.changeProfile("Pera", "Peric", "Kradjordjeva 1", "0642597452", "6155", "United Kingdom", "London",
+		profilePage.changeProfile("Jelena", "Bozinovic", "Kradjordjeva 1", "0642597452", "6155", "United Kingdom", "London",
 				"London");
 		Thread.sleep(500);
 
-		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Setup Successful"));
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(setupSuccessfull));
 
 		this.authPage.logOut();
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(logOutSuccessfull));
+
 	}
 
 	@Test (priority= 2)
@@ -43,7 +50,7 @@ public class ProfileTest extends BasicTest {
 
 		this.logInPage.logIn(this.emailDemo, this.passwordDemo);
 
-		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Login Successfull"));
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(logInSuccessfull));
 
 		Thread.sleep(500);
 
@@ -54,16 +61,19 @@ public class ProfileTest extends BasicTest {
 
 		Thread.sleep(3000);
 
-		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Profile Image Uploaded Successfully"));
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(profileImageUpload));
 
 		notificationSistemPage.waitMsgDisapear();
 		profilePage.removeImg();
 
 		Thread.sleep(1000);
 
-		Assert.assertTrue(notificationSistemPage.getMsgText().contains("Profile Image Deleted Successfully"));
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(profileImageDelete));
 		notificationSistemPage.waitMsgDisapear();
 
 		this.authPage.logOut();
+		Assert.assertTrue(notificationSistemPage.getMsgText().contains(logOutSuccessfull));
+
+			
 	}
 }

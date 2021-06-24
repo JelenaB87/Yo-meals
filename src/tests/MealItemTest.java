@@ -18,13 +18,15 @@ public class MealItemTest extends BasicTest {
 	public String locationMsg = "The Following Errors Occurred";
 	public String locationName = "City Center - Albany";
 	public String addCartMsg = "Meal Added To Cart";
+	public String addCartMsgError = "[ERROR] Adding to cart was unsuccessful";
 	public String addFavoriteMsg = "Please login first!";
 	public String logInPg = baseUrl + "/guest-user/login-form";
 	public String favoriteMealMsg = "Product has been added to your favorites";
+	public String addFavoriteMsgError = "[ERROR] Unsuccessfuly add to favorite";
 	public String mealsPg = baseUrl + "/meals";
 	public String msgCartNoVisible = "The Meal Added To Cart message is not visible";
 	public String removedMsg = "All meals removed from Cart successfully";
-	public String removedMsgNoVisible = "The All meals removed from Cart successfully message is not visible.";
+	public String removedMsgNoVisible = "[ERROR] The All meals removed from Cart successfully message is not visible.";
 
 	@Test (priority= 0)
 	public void addToCartTest() throws InterruptedException {
@@ -43,7 +45,7 @@ public class MealItemTest extends BasicTest {
 		Thread.sleep(2000);
 
 		this.mealPage.addToCart(2);
-		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(addCartMsg));
+		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(addCartMsg),this.addCartMsgError);
 	}
 
 	@Test (priority= 1)
@@ -66,7 +68,7 @@ public class MealItemTest extends BasicTest {
 		this.driver.get(mealLobster);
 		Thread.sleep(2000);
 		this.mealPage.addFavorite();
-		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(favoriteMealMsg));
+		Assert.assertTrue(this.notificationSistemPage.getMsgText().contains(favoriteMealMsg),this.addFavoriteMsgError);
 
 	}
 
